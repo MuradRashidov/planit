@@ -1,5 +1,7 @@
 'use client'
 import { createBoard } from '@/actions/create-board/index'
+import { FormInput } from '@/components/form/form-input'
+import { FormSubmit } from '@/components/form/form-submit'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useAction } from '@/hooks/use-action'
@@ -19,22 +21,10 @@ const Form = () => {
   return (
     <form action={onSubmit}>
         <div className='flex flex-col space-y-2'>
-        <Input 
-            type="text" 
-            name='title'
-            required
-            placeholder='board title'
-        />
-        <div>
-            {fieldErrors?.title?.map((error) => (
-                <p key={error} className='text-rose-500'>
-                    {error}
-                </p>
-            ))}
-        </div>
-        <Button disabled={isLoading} size='sm' type='submit'>
-            Submit
-        </Button>
+        <FormInput id='title' errors={fieldErrors} label='Board Title'/>
+        <FormSubmit className='bg-red-500 hover:bg-red-600 transition'>
+          Save
+        </FormSubmit>
         </div>
     </form>
   )

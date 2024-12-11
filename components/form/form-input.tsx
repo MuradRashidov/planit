@@ -4,6 +4,7 @@ import { forwardRef } from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { useFormStatus } from "react-dom";
+import FormErrors from "./form-errors";
 
 interface FormInputProps {
     id: string;
@@ -38,7 +39,11 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(({
                 {
                     label? (
                         <Label className="text-xs font-semibold text-neutral-700">
-                            <Input
+                            {label}
+                        </Label>
+                    ):null
+                }
+                <Input
                                 onBlur={onBlur}
                                 defaultValue={defaultValue}
                                 required={required}
@@ -51,10 +56,8 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(({
                                 className={`text-sm px-2 py-1 h-7 ${className}`}
                                 aria-describedby={`${id}-error`}
                             />
-                        </Label>
-                    ):null
-                }
             </div>
+            <FormErrors errors={errors} id={id}/>
         </div>
     )
 })
