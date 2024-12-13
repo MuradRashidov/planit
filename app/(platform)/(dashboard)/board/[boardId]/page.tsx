@@ -1,7 +1,7 @@
 import { db } from '@/lib/db'
 import { auth } from '@clerk/nextjs/server'
 import { redirect } from 'next/navigation'
-import React from 'react'
+import React, { useState } from 'react'
 import { ListContainer } from './_components/list-container';
 
 interface BoardIdPageProps {
@@ -16,7 +16,7 @@ const BoardIdPage = async ({ params} : BoardIdPageProps) => {
     orderBy: { order: "asc" }
   
   })
-  if (!orgId) redirect('/select-org')
+  if (!orgId) redirect('/select-org');
   return (
     <div className='p-4 h-full overflow-x-auto'>
       <ListContainer boardId={boardId} data={lists}/>

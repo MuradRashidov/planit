@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ boardId: 
             orgId,
         },
     });
-    console.log("Board: ",board);
+    //console.log("Board: ",board);
     
     return {
         title: board?.title || 'Board',

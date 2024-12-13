@@ -25,7 +25,7 @@ export const BoardTitleForm = ({ data }: BoardTitleFormProps) => {
   }
   const { execute } = useAction(updateBoard, {
     onSuccess:(data) => {
-      console.log("Data: ", data);
+      //console.log("Data: ", data);
       
       toast.success(`${data.title} updated with ${title}`);
       setTitle(data.title);
@@ -38,7 +38,7 @@ export const BoardTitleForm = ({ data }: BoardTitleFormProps) => {
   const onSubmit = (formData:FormData) => {
     const title = formData.get('title') as string;
     execute({id:data.id,title});
-    console.log('Form submitted', title);
+    //console.log('Form submitted', title);
     
   }
   const onBlur = () => formRef.current?.requestSubmit();
