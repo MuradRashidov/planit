@@ -4,11 +4,8 @@ import { useEffect, useState } from "react";
 import { CardModal } from "../modals/card-modal";
 import { ProModal } from "../modals/pro-modal";
 
-interface ModalProviderProps {
-  
-};
 
-export const ModalProvider = ({}: ModalProviderProps) => {
+export const ModalProvider = () => {
     const [isMounted,setIsMounted] = useState(false)
     useEffect(() => {
         setIsMounted(true);

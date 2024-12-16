@@ -12,11 +12,8 @@ import { Actions } from "./actions";
 import { AuditLog } from "@prisma/client";
 import { Activity } from "./activity";
 
-interface CardModalProps {
-  
-};
 
-export const CardModal = ({}: CardModalProps) => {
+export const CardModal = () => {
 const [isMounted,setIsMounted] = useState(false);
 useEffect(() => {
   setIsMounted(true);

@@ -8,11 +8,8 @@ import { useAction } from "@/hooks/use-action";
 import { stripeRedirect } from "@/actions/stripe-redirect";
 import { toast } from "sonner";
 
-interface ProModalProps {
-  
-};
 
-export const ProModal = ({}: ProModalProps) => {
+export const ProModal = () => {
   const { execute, isLoading } = useAction(stripeRedirect, {
     onSuccess: data => window.location.href = data,
     onError: err => toast.error(err)
