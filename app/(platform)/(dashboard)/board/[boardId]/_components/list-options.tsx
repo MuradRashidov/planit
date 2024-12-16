@@ -19,6 +19,8 @@ interface ListOptionsProps {
 };
 
 export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
+  const closeRef = useRef<ElementRef<'button'>>(null);
+
   const { execute: executeDelete } = useAction(deleteList, {
      onSuccess: (data) => {
         toast.success(`${data.title} deleted`);
@@ -31,7 +33,7 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
   const { execute: executeCopy } = useAction(copyList, {
     onSuccess: (data) => {
        toast.success(`${data.title} copied`);
-       closeRef.current?.click();
+       closeRef?.current?.click();
     },
     onError: (err) => {
        toast.error(err)
@@ -53,7 +55,6 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
         boardId
     })
   }
-  const closeRef = useRef<ElementRef<'button'>>(null);
   return (
     <Popover>
         <PopoverTrigger asChild>
@@ -66,7 +67,10 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
                 List Actions
             </div>
             <PopoverClose ref={closeRef} asChild>
-                <X className="h-auto w-auto p-2 absolute right-2 top-2 text-neutral-600"/>
+                {/* <X className="h-auto w-auto p-2 absolute right-2 top-2 text-neutral-600"/> */}
+                <Button ref={closeRef} variant="ghost" className="h-auto w-auto p-2 absolute right-2 top-2 text-neutral-600">
+                    <X className="h-4 w-4 text-neutral-600"/>
+                </Button>
             </PopoverClose>
             <Button
             onClick={onAddCard}
@@ -76,8 +80,8 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
                 Add a Card
             </Button>
             <form action={handleCopy}>
-                <input id="id" hidden name="id" value={data.id} />
-                <input id="boardId" hidden name="boardId" value={data.boardId} />
+                <input onChange={() => null} id="id" hidden name="id" value={data.id} />
+                <input onChange={() => null} id="boardId" hidden name="boardId" value={data.boardId} />
                 <FormSubmit 
                 variant="ghost"
                 className="rounded-none p-2 px-5 font-medium text-sm justify-start w-full h-auto"
@@ -87,8 +91,8 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
             </form>
             <Separator/>
             <form action={handleDelete}>
-                <input id="id" hidden name="id" value={data.id} />
-                <input id="boardId" hidden name="boardId" value={data.boardId} />
+                <input onChange={() => null} id="id" hidden name="id" value={data.id} />
+                <input onChange={() => null} id="boardId" hidden name="boardId" value={data.boardId} />
                 <FormSubmit 
                 variant="ghost"
                 className="rounded-none p-2 px-5 font-medium text-sm justify-start w-full h-auto"

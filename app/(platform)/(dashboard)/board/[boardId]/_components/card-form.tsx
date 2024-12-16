@@ -28,6 +28,7 @@ export const CardForm = forwardRef<HTMLTextAreaElement,Props>(
         const { execute, fieldErrors } = useAction(createCard,{
             onSuccess:(data) => {
                 toast.success(`${data.title} has created`);
+                disableEditing()
             },
             onError: err => toast.error(err)
         })
@@ -67,6 +68,7 @@ export const CardForm = forwardRef<HTMLTextAreaElement,Props>(
 
                     />
                     <input 
+                    onChange={() => null}
                     hidden
                     id="listId"
                     name="listId"

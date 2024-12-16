@@ -71,8 +71,8 @@ export const ListHeader = ({ data, onAddCard }: ListHeaderProps) => {
                ref={formRef}
                className="flex-1 px-[2px]"
                >
-                    <input id="id" hidden name="id" value={data.id} />
-                    <input id="boardI" hidden name="boardId" value={data.boardId} />
+                    <input onChange={() => null} id="id" hidden name="id" value={data.id} />
+                    <input onChange={() => null} id="boardI" hidden name="boardId" value={data.boardId} />
                     <FormInput
                         id="title"
                         errors={fieldErrors}

@@ -66,7 +66,7 @@ const NavItem = ({
         >
             <div className='flex items-center gap-x-2'>
                 <div className='w-7 h-7 relative'>
-                        <Image fill src={organization.imageUrl} alt='task management' className='rounded-sm object-cover'/>
+                        <Image fill src={organization.imageUrl || "/hero.png"} alt='task management' className='rounded-sm object-cover'/>
                 </div>
                 <span className='font-medium text-sm'>{organization.name}</span>
             </div>

@@ -1,7 +1,10 @@
 import { FormPopover } from '@/components/form-popover'
 import { Hint } from '@/components/hint'
 import { Skeleton } from '@/components/ui/skeleton'
+import { MAX_FREE_BOARDS } from '@/constants/boards'
 import { db } from '@/lib/db'
+import { getAvailableCaunt } from '@/lib/org-limit'
+import { checkSubscription } from '@/lib/subscription'
 import { auth } from '@clerk/nextjs/server'
 import { HelpCircle, User2 } from 'lucide-react'
 import Link from 'next/link'
@@ -9,14 +12,17 @@ import { redirect } from 'next/navigation'
 import React from 'react'
 
 const BoardList = async () => {
+  const isPro = await checkSubscription();
   const { orgId } = await auth();
   if(!orgId) return redirect('/select-org');
-
+  
   const boards = await db.board.findMany({ where: {
     orgId
   }, orderBy: {
     createdAt:'desc'
-  }})
+  }});
+
+  const availableCount:any = await getAvailableCaunt();
   return (
     <div className='space-y-4 flex flex-col'>
         <div className="flex items-center font-semibold text-lg text-neutral-700">
@@ -42,7 +48,7 @@ const BoardList = async () => {
          <FormPopover side='right' sideOffset={10}>
             <div role='button' className='aspect-video px-4 relative bg-muted h-full w-full hover:opacity-75 flex items-center flex-col justify-center gap-y-1 rounded-sm transition'>
                 <p className='text-sm'>Create new board</p>
-                <span className='text-xs'>5 remaining</span>
+                <span className='text-xs'>{isPro?"Unlimitid":`${MAX_FREE_BOARDS - availableCount} remaining`}</span>
                 <Hint description='Free forkspaces can have up to 5 boards. For unlimited boards upgrade this workspace'>
                   <HelpCircle className='absolute bottom-2 right-2 h-[14px] w-[14px]'/>
                 </Hint>

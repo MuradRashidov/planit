@@ -4,8 +4,10 @@ import { useOrganization } from '@clerk/nextjs'
 import { CreditCard } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react'
-
-const Info = () => {
+interface InfoProps {
+  isPro: boolean
+}
+const Info = ({isPro}: InfoProps) => {
   const { organization, isLoaded } = useOrganization();
   if(!isLoaded) return <><Info.Skeleton/></>
   return (
@@ -13,7 +15,7 @@ const Info = () => {
       <div className='w-[60px] h-[60px] relative'>
           <Image
             alt='task management'
-            src={organization?.imageUrl as string}
+            src={organization?.imageUrl as string || "/hero.png"}
             fill
             className='rounded-md object-cover'
           />
@@ -26,7 +28,7 @@ const Info = () => {
         </p>
         <div className='flex items-center text-xs text-muted-foreground'>
           <CreditCard className='h-3 w-3 mr-1'/>
-          Free
+          {isPro?"Pro":"Free"}
       </div>
       </div>
       
