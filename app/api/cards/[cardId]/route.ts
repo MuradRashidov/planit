@@ -1,8 +1,8 @@
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(_:any,{ params }: { params: { cardId?: string } }) {
+export async function GET(request: NextRequest,{ params }: { params: { cardId?: string } }) {
     try {
         console.log("params",params);
         
