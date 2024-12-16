@@ -61,6 +61,7 @@ export const CardForm = forwardRef<HTMLTextAreaElement,Props>(
                 ref={formRef}
                 >
                     <FormTextarea
+                    errors={fieldErrors}
                     id="title"
                     onKeyDown={onTextareaKeyDown}
                     ref={ref}

@@ -1,7 +1,4 @@
-import { db } from '@/lib/db';
-import { auth } from '@clerk/nextjs/server';
 import { Board } from '@prisma/client';
-import { redirect } from 'next/navigation';
 import React from 'react'
 import { BoardTitleForm } from './board-title-form';
 import { BoardOptions } from './board-options';
