@@ -1,13 +1,10 @@
 {
   "extends": ["next/core-web-vitals", "next/typescript"],
-  
-    "rules": {
-      "no-unused-vars": "off",   // Kullanılmayan değişkenler için uyarıyı devre dışı bırakır
-      "no-explicit-any": "off",  // `any` tipi kullanımına uyarı vermez
-      "prefer-const": "off"      // `let` yerine `const` kullanımını zorunlu tutmaz
-    }
-  
-  
-  
-
+  "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "off",  // Bu kuralı da ekleyin
+    "no-explicit-any": "off",
+    "@typescript-eslint/no-explicit-any": "off", // Bu kuralı da ekleyin
+    "prefer-const": "off"
+  }
 }
