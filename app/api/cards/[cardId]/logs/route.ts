@@ -29,7 +29,7 @@ import { auth } from "@clerk/nextjs/server";
 import { ENTITY_TYPE } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest,{ params }: { params: { cardId: string }}) {
+export async function GET(request: NextRequest,{ params }: { params: { cardId?: string }}) {
     try {
         const { orgId, userId } = await auth();
         if (!userId || !orgId) return new NextResponse("Unauthorized", { status: 401 });
