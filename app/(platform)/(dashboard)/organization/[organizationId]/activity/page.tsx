@@ -4,11 +4,8 @@ import { Suspense } from "react";
 import { ActivityList } from "./_components/activity-list";
 import { checkSubscription } from "@/lib/subscription";
 
-interface ActivityPageProps {
-  
-};
 
-const ActivityPage = async ({}: ActivityPageProps) => {
+const ActivityPage = async () => {
   const isPro = await checkSubscription();
   return (
     <div className="w-full">

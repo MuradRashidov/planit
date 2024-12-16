@@ -12,11 +12,9 @@ import { useAction } from "@/hooks/use-action";
 import { createList } from "@/actions/create-list";
 import { toast } from "sonner";
 
-interface ListFormProps {
-  
-};
 
-export const ListForm = ({}: ListFormProps) => {
+
+export const ListForm = () => {
   const inputRef = useRef<ElementRef<'input'>>(null);
   const formRef = useRef<ElementRef<'form'>>(null);
   const [isEditing,setIsEditing] = useState(false);
