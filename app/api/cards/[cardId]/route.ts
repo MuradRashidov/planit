@@ -2,17 +2,18 @@ import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest,{ params }: { params: { cardId?: string } }) {
+export async function GET(request: NextRequest,{ params }: { params: Promise<{ cardId: string }> }
+) {
     try {
         console.log("params",params);
         
        
         const { userId, orgId } = await auth();
         if (!orgId || !userId) return new NextResponse('Unauthorized', { status: 401 });
-
+        const { cardId } = await params;
         const card = await db.card.findUnique({
             where: {
-                id: params?.cardId,
+                id: cardId,
                 list: { board: { orgId } },
             },
             include: { list: { select: { title: true } } },
